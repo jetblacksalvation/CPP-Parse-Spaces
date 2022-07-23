@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parse.h" />
+    <ClInclude Include="TokenReader.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />

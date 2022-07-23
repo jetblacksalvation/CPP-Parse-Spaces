@@ -12,12 +12,16 @@ int main() {
 	
 	parse_words(words,"input.txt");
 
-	std::cout << "size of words = " << words.size() << std::endl;
+	
 	//testing stuff 
-	for (int x = 0; x < words.size(); x++) {
+
+	for (auto it: words) {
 
 
-		std::cout << words[x] << std::endl;
+		std::cout << it << std::endl;
 	}
 	
+
+
+
 }
