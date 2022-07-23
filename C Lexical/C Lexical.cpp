@@ -15,7 +15,7 @@ int main() {
 	int tmep;
 	while (std::getline(file, text)) {
 		tempstr += text;
-		tempstr += " ";
+		tempstr += " ";//just incase there are no spaces at the last thing 
 		//parse_words(words, tempstr);
 		
 	}

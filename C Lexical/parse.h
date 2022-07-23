@@ -5,7 +5,8 @@
 void parse_words(std::vector<std::string>& PushTo, std::string text) {
     
     size_t pos = 0;
-    while ((pos = text.find(" ")) != std::string::npos) {
+    while ((pos = text.find(" ")) != std::string::npos) {//npos is just max string size :P
+        //also props to the guy i stole the code from, it was dog shit so i changed it
         PushTo.push_back(text.substr(0, pos));
         text.erase(0, pos + 1);
        
