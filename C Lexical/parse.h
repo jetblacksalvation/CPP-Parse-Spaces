@@ -3,9 +3,11 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 //list of illegal symbols for identifiers
-std::vector<char> Illegal{ '/','-','+','=','.','<','>',';','(',')','[',']','{','}'};
+std::vector<std::string> Illegal{ "/",",","+","=",".","<",">",";","(",")","[","}", "{", "}"};
+//'/','-','+','=','.','<','>',';','(',')','[',']','{','}'
 void error_print(std::string message) {
     std::cout << message << std::endl;
     exit(0);
@@ -34,30 +36,45 @@ void parse_words(std::vector<std::string>& PushTo,std::string filename) {
 
     }//accumilates/pushes all lines of text from file into one string, text
 
-    for (int x = 0; x < Illegal.size(); x++) {
-        
-        while (pos != std::string::npos) {
-            
-            pos = text.find(Illegal[x]);
-            text[pos] = *" ";
-            text[pos + 1] = *" ";
-            text.insert(pos, &Illegal[x]);
-            
-        }
-        
+    
 
-
-
-    }
-    pos = 0;
     //finds spaces and ignores/copies to vector 
     while ((pos = text.find(" ")) != std::string::npos) {//npos is just max string size :P
         //also props to the guy i stole the code from, it was dog shit so i changed it
 
         PushTo.push_back(text.substr(0, pos));
         text.erase(0, pos + 1);
-       
         
+        
+    }
+
+    pos = 0;
+
+    for (int x = 0; x < PushTo.size(); x++) {
+         
+        for (int f = 0; f < Illegal.size();f++ ) {
+            
+            if (PushTo[x].compare( Illegal[f]) and pos != std::string::npos) {
+                
+                std::cout << Illegal[f];
+            }
+            else {
+                std::cout <<  Illegal[f]<<std::endl;
+                pos = PushTo[x].find(Illegal[f]);
+                
+                    //skip
+
+                PushTo.insert(PushTo.begin()+ x, Illegal[f]);
+                PushTo[x].erase(PushTo[x].begin() + pos);
+                std::cout << PushTo[x+1] << std::endl;
+                    
+               
+
+            }
+            
+
+        }
+
     }
     for (int x = 0; x < PushTo.size(); x++) {//erases all instances of empty
         if (PushTo[x] == "") {
