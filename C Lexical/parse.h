@@ -50,32 +50,7 @@ void parse_words(std::vector<std::string>& PushTo,std::string filename) {
 
     pos = 0;
 
-    for (int x = 0; x < PushTo.size(); x++) {
-         
-        for (int f = 0; f < Illegal.size();f++ ) {
-            
-            if (PushTo[x].compare( Illegal[f]) and pos != std::string::npos) {
-                
-                std::cout << Illegal[f];
-            }
-            else {
-                std::cout <<  Illegal[f]<<std::endl;
-                pos = PushTo[x].find(Illegal[f]);
-                
-                    //skip
-
-                PushTo.insert(PushTo.begin()+ x, Illegal[f]);
-                PushTo[x].erase(PushTo[x].begin() + pos);
-                std::cout << PushTo[x+1] << std::endl;
-                    
-               
-
-            }
-            
-
-        }
-
-    }
+    
     for (int x = 0; x < PushTo.size(); x++) {//erases all instances of empty
         if (PushTo[x] == "") {
             PushTo.erase(PushTo.begin() + x);//this function is , why can't a just SAY the index??
