@@ -3,8 +3,6 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include <sstream>
-
 //list of illegal symbols for identifiers
 std::vector<std::string> Illegal{ "/",",","+","=",".","<",">",";","(",")","[","}", "{", "}"};
 //'/','-','+','=','.','<','>',';','(',')','[',']','{','}'
@@ -41,8 +39,14 @@ void parse_words(std::vector<std::string>& PushTo,std::string filename) {
     //finds spaces and ignores/copies to vector 
     while ((pos = text.find(" ")) != std::string::npos) {//npos is just max string size :P
         //also props to the guy i stole the code from, it was dog shit so i changed it
-
-        PushTo.push_back(text.substr(0, pos));
+        for(auto iter: Illegal){
+            if(text[pos-1] == iter[0]){//iter 0 because acts like string, since you only care about first string 
+                std::cout<<"illegal character!!\n";
+                //to print out illegal characters
+                //g
+            }
+        }
+        PushTo.push_back(text.substr(0, pos));//wouldn't this copy 0 - pos constantly??? fucking retarded ass functions like this one make ppl hate c++
         text.erase(0, pos + 1);
         
         
@@ -53,6 +57,7 @@ void parse_words(std::vector<std::string>& PushTo,std::string filename) {
     
     for (int x = 0; x < PushTo.size(); x++) {//erases all instances of empty
         if (PushTo[x] == "") {
+            //why it takes a iterator?????
             PushTo.erase(PushTo.begin() + x);//this function is , why can't a just SAY the index??
             //and in this use case wouldn't this delete the element after the empty element????
             //hate this shit
