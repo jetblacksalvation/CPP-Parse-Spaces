@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="parse.h">
+    <ClInclude Include="parse.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TokenReader.h">

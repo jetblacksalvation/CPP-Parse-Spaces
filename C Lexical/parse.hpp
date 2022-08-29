@@ -4,14 +4,8 @@
 #include <fstream>
 #include <string>
 //list of illegal symbols for identifiers
-std::vector<std::string> Illegal{ "/",",","+","=",".","<",">",";","(",")","[","}", "{", "}"};
+const char  Illegal[] = {'@','#','$','%','^','&','*', '/','-','+','=','.','<','>',';','(',')','[',']','{','}'};
 //'/','-','+','=','.','<','>',';','(',')','[',']','{','}'
-void error_print(std::string message) {
-    std::cout << message << std::endl;
-    exit(0);
-}
-
-
 
 void parse_words(std::vector<std::string>& PushTo,std::string filename) {
     //i do not believe that i am using the word parse correctly
@@ -26,33 +20,40 @@ void parse_words(std::vector<std::string>& PushTo,std::string filename) {
     size_t pos = 0;//the value for pos doesn't really matter, the point of it 
     // is to find the position of "illegal" characters 
 
-
+   
     while (std::getline(file, tempstr)) {
+
+       
+
         text += tempstr;
         text += " ";//just incase there are no spaces at the last thing 
         //parse_words(words, tempstr);
 
     }//accumilates/pushes all lines of text from file into one string, text
+    tempstr = text;//use tempstr after ths 
+    for (int x = 0; x < 21; x++) {
 
-    
 
+        while (int f = 0 ; f < tempstr.size();f++) {//npos is just max string size :P
+        //also props to the guy i stole the code from, it was dog shit so i changed it
+
+            
+            text.erase(0, pos + 1);
+
+
+        }
+
+    }
     //finds spaces and ignores/copies to vector 
     while ((pos = text.find(" ")) != std::string::npos) {//npos is just max string size :P
         //also props to the guy i stole the code from, it was dog shit so i changed it
-        for(auto iter: Illegal){
-            if(text[pos-1] == iter[0]){//iter 0 because acts like string, since you only care about first string 
-                std::cout<<"illegal character!!\n";
-                //to print out illegal characters
-                //g
-            }
-        }
+        
         PushTo.push_back(text.substr(0, pos));//wouldn't this copy 0 - pos constantly??? fucking retarded ass functions like this one make ppl hate c++
         text.erase(0, pos + 1);
         
         
     }
-
-    pos = 0;
+   
 
     
     for (int x = 0; x < PushTo.size(); x++) {//erases all instances of empty
